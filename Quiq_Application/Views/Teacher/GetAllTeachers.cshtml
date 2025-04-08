@@ -1,0 +1,110 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+   
+}
+
+@model List<Quiq_Application.Models.UserModel>;
+
+
+
+
+<html>
+<head>
+
+
+    <style>
+        .boxx {
+            margin-left: 23%;
+            width: 90%;
+        }
+
+        .ttable {
+            width: 90%;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+
+    <div class="boxx">
+        <h3>Add New Teacher</h3>
+        <a asp-action="AddNewTeacher" class="btn btn-primary">Add Admin</a>
+        <table class="ttable table table-dark">
+            <tbody>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Gender</th>
+            <th>User Address</th>
+            <th>User Type</th>
+            <th>Action</th>
+            </tbody>
+
+            @foreach (Quiq_Application.Models.UserModel item in Model)
+            {
+                <tr>
+                    <td>@item.FirstName</td>
+                    <td>@item.LastName</td>
+                    <td>@item.Email</td>
+                    @if (item.Gender == true)
+                    {
+                        <td>Male</td>
+                    }
+                    else
+                    {
+                        <td>Female</td>
+                    }
+                    @switch (item.UserAddressId)
+                    {
+                        case 1:
+                            <td>Amman</td>
+                            break;
+                        case 2:
+                            <td>Zarqa</td>
+                            break;
+                        case 3:
+                            <td>Aqapa</td>
+                            break;
+                        case 4:
+                            <td>Jarash</td>
+                            break;
+                        case 5:
+                            <td>Ajloun</td>
+                            break;
+                        case 6:
+                            <td>Maan</td>
+                            break;
+                        default:
+                            <td>Dead Sea</td>
+                            break;
+                    }
+                    @switch (item.UserTypeId)
+                    {
+                        case 1:
+                            <td>Admin</td>
+                            break;
+                        case 2:
+                            <td>Teacher</td>
+                            break;
+                        default:
+                            <td>Student</td>
+                            break;
+                    }
+                    <td>
+                        <a class="btn btn-primary" asp-controller="Teacher" asp-action="EditTeacher" asp-route-UserId="@item.UserId">Edit</a>
+                        <a class="btn btn-danger" asp-controller="Teacher" asp-action="DeleteTeacher" asp-route-UserId="@item.UserId">Delete</a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+
+
+</body>
+</html>

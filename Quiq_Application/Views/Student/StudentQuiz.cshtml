@@ -1,0 +1,59 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Views/Shared/_LayoutStudent.cshtml";
+}
+@model Quiq_Application.Entity.Quiz
+
+
+
+
+<html>
+<head>
+    <style>
+        .boxx {
+            margin-left: 23%;
+            width: 90%;
+        }
+
+        .formm {
+            width: 90%;
+        }
+    </style>
+</head>
+<body>
+
+        <form asp-action="StudentGetQuiz">
+            <div class="boxx box">
+                <div class="formm">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h3>Exam : </h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            Enter Exam Code
+                            <input type="text" class="form-control" asp-for="RoomCode" />
+                            <span asp-validation-for="RoomCode" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:25px">
+                        <div class="col-md-3">
+                            <input type="submit" value="Enter" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+
+        </form>
+
+</body>
+@section Scripts
+{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+</html>

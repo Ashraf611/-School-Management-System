@@ -1,0 +1,69 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@model Quiq_Application.Models.CourseModel;
+
+<html>
+<head>
+    <style>
+        .boxx {
+            margin-left: 23%;
+            width: 90%;
+        }
+
+        .formm {
+            width: 90%;
+        }
+    </style>
+</head>
+<body>
+    <form asp-action="Update">
+        <div class="boxx">
+            <div class="formm">
+                <div class="row">
+                    <div class="col-md-3">
+                        Course Name
+                        <input type="text" class="form-control" asp-for="CourseName" />
+                        <span asp-validation-for="CourseName" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+                        Description
+                        <textarea class="form-control" asp-for="Description"></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+                        Teacher
+                        <select asp-for="TeacherId" class="form-control" asp-items="@(new SelectList(ViewBag.Teacher,"UserId","Name"))">
+                            <option value="" selected="selected">Please Select</option>
+                        </select>
+                        <span asp-validation-for="TeacherId" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+                        Category
+                        <select class="form-control" id="subjectId" asp-for="CatigoryId" asp-items="@(new SelectList(ViewBag.Catigory,"CategoryId","CategoryName"))">
+                            <option value="" selected="selected">Please Select</option>
+                        </select>
+                        <span asp-validation-for="CatigoryId" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row" style="margin-top:25px">
+                    <div class="col-md-3">
+                        <input type="submit" value="Update Course" class="btn btn-primary" />
+                        <input type="hidden" asp-for="CourseId"  class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+
+    </form>
+</body>
+@section Scripts
+{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+</html>

@@ -1,0 +1,43 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Views/Shared/_LayoutStudent.cshtml";
+}
+
+
+
+
+<html>
+<head>
+    <style>
+        .boxx {
+            margin-left: 23%;
+            width: 90%;
+        }
+
+        .formm {
+            width: 90%;
+        }
+    </style>
+</head>
+<body>
+    <form asp-action="StudentQuiz">
+        <div class="boxx">
+            <div class="formm">
+                <div class="row">
+                    <div class="col-md-3">
+                       <h3>Wrong Code Try Again</h3>
+                    </div>
+                </div>
+                <div class="row" style="margin-top:25px">
+                    <div class="col-md-3">
+                        <input type="submit" value="Back" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Views/Shared/_LayoutStudent.cshtml";
+}
+
+
+
+<html>
+<head>
+    <style>
+        .boxx {
+            margin-left: 23%;
+            width: 90%;
+        }
+
+        .formm {
+            width: 90%;
+        }
+
+        span {
+            font-size:16px;
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <form action="Index">
+        <div class="boxx">
+            <div class="formm">
+                <div class="row">
+                    <h4>Your Name : <span>@ViewBag.Username</span></h4>
+                </div>
+                <div class="row">
+                    <h4>Course Name : <span>@ViewBag.courseOfExam</span></h4>
+                </div>
+                <div class="row">
+                    <h4>Score : <span>@ViewBag.Score</span></h4>
+                </div>
+                <div class="row">
+                    <h4>Status : <span>@ViewBag.Status</span></h4>
+                </div>
+                <div class="row">
+                    <h4>Exam Date : <span>@ViewBag.AttemptDate</span></h4> 
+                </div>
+                <div class="row" style="margin-top:16px">
+                    <div class="col-md-3">
+                        <input type="submit" value="Back" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        </div>
+   </form>
+</body>
+</html>

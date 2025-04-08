@@ -1,0 +1,62 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    if (ViewBag.UserType == 1)
+    {
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    }
+    else if (ViewBag.UserType == 2)
+    {
+        Layout = "~/Views/Shared/_LayoutTeacher.cshtml";
+    }
+    else
+    {
+        Layout = ViewBag.Layout;
+    }
+}
+
+@model List<Quiq_Application.Models.StudentsResults_Model>;
+
+
+
+
+<html>
+<head>
+
+
+    <style>
+        .boxx {
+            margin-left: 23%;
+            width: 90%;
+        }
+
+        .ttable {
+            width: 90%;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+
+    <div class="boxx">
+        <table class="ttable table table-dark">
+            @foreach (Quiq_Application.Models.StudentsResults_Model item in Model)
+            {
+                <tr class="box">
+                    <td>@item.StudentName</td>
+                    <td>@item.CourseName</td>
+                    <td>@item.Status</td>
+                    <td>@item.Score</td>
+                    <td>@item.Completed</td>
+                    <td>@item.AttemptDate</td>
+                </tr>
+            }
+
+        </table>
+    </div>
+
+
+</body>
+</html>

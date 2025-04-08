@@ -1,0 +1,109 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@model Quiq_Application.Models.AdminModel
+
+
+<html>
+<head>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .column {
+            width: 25%;
+            float: left;
+            padding: 0 20px;
+        }
+
+        .card {
+            color:white;
+            background-color: rgb(8, 8, 18);
+            box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
+            width: 250px;
+            text-align:center;
+        }
+
+        .counter {
+            color: #fff;
+            font-size: 18px;
+        }
+
+        .roww {
+            margin-left: 200px;
+        }
+
+        .card_sec{
+            margin-left: 330px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="row">
+        <div class="column">
+            <div class="col-md-3">
+                <div class="card" style="opacity:0">
+
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="col-md-3">
+                <div class="card">
+                    <p><img src="~/images/manager.png"/></p>
+                    <span class="counter">@ViewBag.dminNumber</span>
+                    <p>Number Of Admins</p>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="col-md-3">
+                <div class="card">
+                    <p><img src="~/images/teacher.png" /></p>
+                    <span class="counter">@ViewBag.TeacherNumber </span>
+                    <p>Number Of Teachers</p>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="col-md-3">
+                <div class="card">
+                    <p><img src="~/images/student.png" /></p>
+                    <span class="counter">@ViewBag.StudentsNumber</span>
+                    <p>Number Of Students</p>
+                </div>
+            </div>
+        </div> 
+        </div>
+    <div class="row">
+        <div class="column">
+            <div class="col-md-3">
+                <div class="card card_sec">
+                    <p><img src="~/images/online-course.png" /></p>
+                    <span class="counter">@ViewBag.CourseNumbers </span>
+                    <p>Number Of Courses</p>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</body>
+
+<script>
+    $(document).ready(function(){
+       $('.counter').each(function(){
+           $(this).prop('Counter', 0).animate({
+               Counter: $(this).text()
+           }, {
+               duration: 2000,
+               easing: 'swing',
+               step: function(now){
+                   $(this).text(Math.ceil(now));
+               }
+           });
+       });
+    });
+</script>

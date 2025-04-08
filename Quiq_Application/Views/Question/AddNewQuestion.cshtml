@@ -1,0 +1,100 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    if (ViewBag.UserType == 1)
+    {
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    }
+    else if (ViewBag.UserType == 2)
+    {
+        Layout = "~/Views/Shared/_LayoutTeacher.cshtml";
+    }
+    else
+    {
+        Layout = ViewBag.Layout;
+    }
+}
+@model Quiq_Application.Models.QuestionModel;
+
+
+<html>
+<head>
+    <style>
+        .boxx {
+            margin-left: 19%;
+            width: 100%;
+        }
+
+        .formm {
+            width: 98%;
+        }
+    </style>
+</head>
+<body>
+    <form asp-action="SaveQuestion">
+        <div class="boxx">
+            <div class="formm">
+                <div class="row">
+                    <div class="col-md-3">
+                        Question
+                        <input type="text" class="form-control" asp-for="Text" />
+                        <span asp-validation-for="Text" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+                        option one
+                        <input type="text" class="form-control" asp-for="FistOption" />
+                        <span asp-validation-for="FistOption" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+                        Second Option
+                        <input type="text" class="form-control" asp-for="SecontOption" />
+                        <span asp-validation-for="SecontOption" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+                        Third Option
+                        <input type="text" class="form-control" asp-for="ThirdOption" />
+                        <span asp-validation-for="ThirdOption" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row" style="margin-top:25px">
+                    <div class="col-md-3">
+                        Fourth Option
+                        <input type="text" class="form-control" asp-for="FourthOption" />
+                        <span asp-validation-for="FourthOption" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+                        Answer
+                        <input type="text" class="form-control" asp-for="Answer"/>
+                        <span asp-validation-for="Answer" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+                        Grade
+                        <input type="text" class="form-control" asp-for="Grade" />
+                        <span asp-validation-for="Grade" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+                        Course
+                        <select class="form-control" asp-for="CourseId" asp-items="@(new SelectList(ViewBag.courses,"CourseId","CourseName"))">
+                            <option value="" selected="selected">select course</option>
+                        </select>
+                        <span asp-validation-for="CourseId" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row" style="margin-top:25px">
+                    <div class="col-md-3">
+                        <input type="submit" value="Save Question" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+
+    </form>
+</body>
+@section Scripts
+{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+</html>

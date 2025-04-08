@@ -1,0 +1,83 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    if (ViewBag.UserType == 1)
+    {
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    }
+    else if (ViewBag.UserType == 2)
+    {
+        Layout = "~/Views/Shared/_LayoutTeacher.cshtml";
+    }
+    else
+    {
+        Layout = ViewBag.Layout;
+    }
+}
+
+@model List<Quiq_Application.Models.QuestionModel>;
+
+
+
+
+<html>
+<head>
+
+
+    <style>
+        .boxx {
+            margin-left: 23%;
+            width: 90%;
+        }
+
+        .ttable {
+            width: 90%;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+
+    <div class="boxx">
+        <h3>Add New Question</h3>
+        <a asp-action="AddNewQuestion" class="btn btn-primary">Add Question</a>
+        <table class="ttable table table-dark">
+            <tbody>
+            <th>Question Text</th>
+            <th>First Option</th>
+            <th>Second Option</th>
+            <th>Third Option</th>
+            <th>Fourth Option</th>
+            <th>Answer</th>
+            <th>Grade</th>
+            <th>Course Name</th>
+            <td>Action</td>
+            </tbody>
+
+            @foreach (Quiq_Application.Models.QuestionModel item in Model)
+            {
+                <tr>
+                    <td>@item.Text</td>
+                    <td>@item.FistOption</td>
+                    <td>@item.SecontOption</td>
+                    <td>@item.ThirdOption</td>
+                    <td>@item.FourthOption</td>
+                    <td>@item.Answer</td>
+                    <td>@item.Grade</td>
+                    <td>@item.CourseName</td>
+
+                    <td>
+                        <a class="btn btn-primary" asp-controller="Question" asp-action="EditQuestion" asp-route-QuestionsId="@item.QuestionsId">Edit</a>
+                        <a class="btn btn-danger" asp-controller="Question" asp-action="DeleteQuestion" asp-route-QuestionsId="@item.QuestionsId">Delete</a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+
+
+</body>
+</html>

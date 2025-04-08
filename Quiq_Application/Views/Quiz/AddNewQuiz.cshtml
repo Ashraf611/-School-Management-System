@@ -1,0 +1,73 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Views/Shared/_LayoutTeacher.cshtml";
+}
+@model Quiq_Application.Models.QuizModel
+
+<html>
+<head>
+    <style>
+        .boxx {
+            margin-left: 23%;
+            width: 90%;
+        }
+
+        .formm {
+            width: 90%;
+        }
+    </style>
+</head>
+<body>
+    <form asp-action="SaveExam">
+        <div class="boxx">
+            <div class="formm">
+                <div class="row">
+                    <div class="col-md-3">
+                        Name
+                        <input type="text" class="form-control" asp-for="Name" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+                        Course
+                        <select class="form-control" asp-for="CourseId" asp-items="@(new SelectList(ViewBag.courses,"CourseId","CourseName"))">
+                            <option value="" selected="selected">Please Select</option>
+                        </select>
+                        <span asp-validation-for="CourseId" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+                        Number Of Questions
+                        <input type="text" class="form-control" asp-for="NumberOfQuestions" />
+                        <span asp-validation-for="NumberOfQuestions" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row" style="margin-top:25px">
+                    <div class="col-md-3">
+                        Mark
+                        <input type="text" class="form-control" asp-for="Mark" />
+                        <span asp-validation-for="Mark" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+                        RoomCode
+                        <input type="text" class="form-control" asp-for="RoomCode" />
+                        <span asp-validation-for="RoomCode" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row" style="margin-top:25px">
+                    <div class="col-md-3">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+
+    </form>
+</body>
+@section Scripts
+{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+</html>

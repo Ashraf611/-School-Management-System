@@ -1,0 +1,126 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css">
+    <link rel="stylesheet" href="~/css/dinamic.css">
+    <link rel="icon" type="image/x-icon" href="~/images/laptop.png" />
+    <title>@ViewData["Title"] - Quiq_Application</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Quiq_Application.styles.css" asp-append-version="true" />
+</head>
+<body>
+>
+    <!--=============== HEADER ===============-->
+    <header class="header" id="header">
+        <div class="header__container">
+            <a href="#" class="header__logo">
+                <span>Ashraf &reg;</span>
+            </a>
+
+            <button class="header__toggle" id="header-toggle">
+                <i class="ri-menu-line"></i>
+            </button>
+        </div>
+    </header>
+
+    <!--=============== SIDEBAR ===============-->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar__container">
+            <div class="sidebar__user">
+                <div class="sidebar__img" style="background-color: rgb(139, 191, 254);">
+                    <img src="~/images/manager.png" alt="image">
+                </div>
+                <div class="sidebar__info">
+                    <h3>Admin</h3>
+                    <span>Welcom @ViewBag.Username</span>
+                </div>
+            </div>
+
+            <div class="sidebar__content">
+                <div>
+                    <h3 class="sidebar__title">MANAGE</h3>
+
+                    <div class="sidebar__list">
+                        <a asp-action="Index" asp-controller="Admin" class="sidebar__link active-link">
+                            <i class="ri-home-5-fill"></i>
+                            <span>Home</span>
+                        </a>
+                        <a asp-action="GetAllAdmins" asp-controller="Admin" class="sidebar__link">
+                            <i class="ri-profile-fill"></i>
+                            <span>Admin</span>
+                        </a>
+                        <a asp-action="GetAllTeachers" asp-controller="Teacher" class="sidebar__link">
+                            <i class="ri-presentation-fill"></i>
+                            <span>Teachers</span>
+                        </a>
+
+                        <a asp-action="GetAllCourses" asp-controller="Course" class="sidebar__link">
+                            <i class="ri-ruler-line"></i>
+                            <span>Courses</span>
+                        </a>
+                        <a asp-action="GetAllStudents" asp-controller="Student" class="sidebar__link">
+                            <i class="ri-graduation-cap-fill"></i>
+                            <span>Students</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="sidebar__title">Education</h3>
+
+                    <div class="sidebar__list">
+                        <a asp-controller="AcceptUser" asp-action="AcceptUsers" class="sidebar__link">
+                            <i class="ri-settings-3-fill"></i>
+                            <span>Accept Users <span class="text-danger"> @ViewBag.acceptNumbers</span></span>
+                        </a>
+                        <a asp-action="GetAllQuestions" asp-controller="Question" class="sidebar__link">
+                            <i class="ri-twitch-line"></i>
+                            <span>Questions</span>
+                        </a>
+                        <a asp-action="AllStudentResult" asp-controller="Student" class="sidebar__link">
+                            <i class="ri-twitch-line"></i>
+                            <span>Results</span>
+                        </a>
+                    </div>
+                </div>
+
+          
+            </div>
+
+            <div class="sidebar__actions">
+                <button>
+                    <i class="ri-moon-clear-fill sidebar__link sidebar__theme" id="theme-button">
+                        <span>Theme</span>
+                    </i>
+                </button>
+
+                <button class="sidebar__link">
+                    <i class="ri-logout-box-r-fill"></i>
+                    <a asp-controller="Home" asp-action="Login" style="text-decoration:none;color:">Log Out</a>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+
+    <!--=============== MAIN =================-->
+    <main class="main container" id="main">
+        @RenderBody()
+    </main>
+    <!--======================================-->
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+    <script src="~/js/dinamic.js"></script>
+</body>
+
+
+</html>

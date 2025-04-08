@@ -1,0 +1,96 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@model List<Quiq_Application.Models.CourseModel>;
+
+
+
+
+<html>
+<head>
+
+
+    <style>
+        .boxx {
+            margin-left: 23%;
+            width: 90%;
+        }
+
+        .ttable {
+            width: 90%;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+
+    <div class="boxx">
+        <h3>Add New Course</h3>
+        <a asp-action="AddNewCourse" class="btn btn-primary">Add Couse</a>
+        <table class="ttable table table-dark">
+            <tbody>
+            <th>CourseName</th>
+            <th>Description</th>
+            <th>TeacherId</th>
+            <th>CatigoryId</th>
+            <th>Action</th>
+            </tbody>
+
+            @foreach (Quiq_Application.Models.CourseModel item in Model)
+            {
+                <tr>
+                    <td>@item.CourseName</td>
+                    <td>@item.Description</td>
+                    <td>@item.TeacherId</td>
+                    @switch (item.CatigoryId)
+                    {
+                        case 1:
+                            <td>It</td>
+                            break;
+                        case 2:
+                            <td>Langueg</td>
+                            break;
+                        case 3:
+                            <td>Arabic</td>
+                            break;
+                        case 4:
+                            <td>Sport</td>
+                            break;
+                        case 5:
+                            <td>Religion</td>
+                            break;
+                        case 6:
+                            <td>Science</td>
+                            break;
+                        case 7:
+                            <td>Art</td>
+                            break;
+                        case 8:
+                            <td>Life</td>
+                            break;
+                        case 9:
+                        <td>Tecnology</td>
+                            break;
+                        default:
+                            <td>Math</td>
+                            break;
+                    }
+                   
+                    <td>
+                        <a class="btn btn-primary" asp-controller="Course" asp-action="EditCourse" asp-route-CourseId="@item.CourseId">Edit</a>
+                        <a class="btn btn-danger" asp-controller="Course" asp-action="DeleteCourse" asp-route-CourseId="@item.CourseId">Delete</a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+
+
+</body>
+</html>

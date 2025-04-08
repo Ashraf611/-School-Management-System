@@ -1,0 +1,97 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+@model Quiq_Application.Models.RegestrationModel
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Responsive Registration Form | CodingLab </title>
+    <link rel="stylesheet" href="~/css/CreatAccount.css">
+    <style>
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Title section -->
+        <div class="title">Registration</div>
+        <div class="content">
+            <!-- Registration form -->
+            <form action="MakeAnAccount">
+                <div class="user-details">
+                    <!-- First Name -->
+                    <div class="input-box">
+                        <span class="details">First Name</span>
+                        <input type="text" asp-for="FirstName" placeholder="First name">
+                    </div>
+                    <!-- last name -->
+                    <div class="input-box">
+                        <span class="details">Last Name</span>
+                        <input type="text" asp-for="LastName" placeholder="Last Name">
+                    </div>
+                    <!--  Email -->
+                    <div class="input-box">
+                        <span class="details">Email</span>
+                        <input type="text" asp-for="Email" placeholder="Email">
+                    </div>
+                    <!-- pass -->
+                    <div class="input-box">
+                        <span class="details">Password</span>
+                        <input type="text" asp-for="Password" placeholder="Enter your password" required>
+                    </div>
+                    <!-- address -->
+                    <div class="input-box">
+                        <span class="details">Address</span>
+                        <select class="form-control" asp-for="UserAddressId" asp-items="@(new SelectList(ViewBag.addresses,"UserAddressId","UserAddressName"))">
+                             <option value="" selected="selected">Enter Address</option>
+                        </select>
+                    </div>
+                    <!-- User Type -->
+                    <div class="input-box">
+                        <span class="details">User Type</span>
+                        <select onclick="Change()" id="idd" class="form-control" asp-for="UserTypeId" asp-items="@(new SelectList(ViewBag.userTypes,"UserTypeId","UserTypeName"))">
+                            <option value="" selected="selected">Enter User Type</option>
+                        </select>
+                    </div>
+                    <div> 
+                        <div class="radioo">
+                            Gender
+                            @Html.RadioButtonFor(x=>x.Gender,true)Male
+                            @Html.RadioButtonFor(x=>x.Gender,false)female
+                        </div>
+                    </div>
+                    <div class="input-box" id="courses" style="display:none">
+                        <span class="details">Courses</span>
+                        <select class="form-control" asp-for="CourseId" asp-items="@(new SelectList(ViewBag.courses,"CourseId","CourseName"))">
+                            <option value="" selected="selected">Select Course</option>
+                        </select>
+                    </div>
+                 <div class="input-box">
+                     <input type="hidden" asp-for="UserValidation" />
+                    </div>
+                 </div> 
+
+                <!-- Submit button -->
+                <div class="button">
+                    <input type="submit" value="Register">
+                </div>
+            </form>
+        </div>
+
+    </div>
+</body>
+<script>
+    function Change(){
+        var id =document.getElementById("idd").value;
+        if(id == 3){
+            document.getElementById("courses").style.display = "block";
+        }
+    }
+</script>
+</html>

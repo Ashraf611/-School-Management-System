@@ -1,0 +1,70 @@
+﻿
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@model List<Quiq_Application.Models.UserModel>;
+
+
+
+
+<html>
+<head>
+
+
+    <style>
+        .boxx {
+            margin-left: 23%;
+            width: 90%;
+        }
+
+        .ttable {
+            width: 90%;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+
+    <div class="boxx">
+        <table class="ttable table table-dark">
+            <tbody>
+            <th>Name</th>
+            <th>Email</th>
+            <th>User Type</th>
+            <th>Action</th>
+            </tbody>
+
+            @foreach (Quiq_Application.Models.UserModel item in Model)
+            {
+                <tr>
+                    <td>@item.FirstName @item.LastName</td>
+                    <td>@item.Email</td>
+                    @switch (item.UserTypeId)
+                    {
+                        case 1:
+                            <td>Admin</td>
+                            break;
+                        case 2:
+                            <td>Teacher</td>
+                            break;
+                        default:
+                            <td>Student</td>
+                            break;
+                    }
+                    <td>
+                        <a class="btn btn-primary" asp-controller="AcceptUser" asp-action="Accept" asp-route-UserId="@item.UserId">Accept</a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Views/Shared/_LayoutStudent.cshtml";
+}
+@model List<Quiq_Application.Models.QuestionModel>;
+
+
+
+<html>
+<head>
+    <style>
+        .boxx {
+            margin-left: 23%;
+            width: 90%;
+        }
+
+        .formm {
+            width: 90%;
+        }
+        input{
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <form asp-action="GoToExam" method="post">
+        <div class="boxx">
+            <div class="formm">
+                @for (int i = 0; i < Model.Count; i++)
+                {
+                    <div class="row" style="margin-bottom:35px; margin-top:5px">
+                        <div class="col-md-12" style="padding:15px; border:solid ">
+                            <div style="height:230px">
+                                <h3>Question : @Model[i].Text </h3><br />
+                                @Html.RadioButtonFor(m => m[i].Actual, 1) @Model[i].FistOption <br />
+                                @Html.RadioButtonFor(m => m[i].Actual, 2) @Model[i].SecontOption <br />
+                                @Html.RadioButtonFor(m => m[i].Actual, 3) @Model[i].ThirdOption <br />
+                                @Html.RadioButtonFor(m => m[i].Actual, 4) @Model[i].FourthOption <br />
+                                <span asp-validation-for="@Model[i].QuestionsId" class="text-danger"></span>
+                                <input type="hidden" asp-for="@Model[i].Answer" />
+                                <input type="hidden" asp-for="@Model[i].QuestionsId" />
+                                <input type="hidden" asp-for="@Model[i].CourseId" />
+                                <input type="hidden" asp-for="@Model[i].Grade" />
+                            </div>
+                        </div>
+                    </div>
+                }
+                <div class="row" style="margin-top:25px">
+                    <div class="col-md-3">
+                        <input type="submit" value="Submit" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+       </div>
+    </form>
+</body>
+@section Scripts
+{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+</html>

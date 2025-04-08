@@ -1,0 +1,89 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@model Quiq_Application.Models.UserModel;
+
+<html>
+<head>
+    <style>
+        .boxx {
+            margin-left: 23%;
+            width: 90%;
+        }
+
+        .formm {
+            width: 90%;
+        }
+    </style>
+</head>
+<body>
+    <form asp-action="SaveTeacher">
+        <div class="boxx">
+            <div class="formm">
+                <div class="row">
+                    <div class="col-md-3">
+                        First Name
+                        <input type="text" class="form-control" asp-for="FirstName" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+                        Last Name
+                        <input type="text" class="form-control" asp-for="LastName" />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+                        Email
+                        <input type="text" class="form-control" asp-for="Email" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+                        Password
+                        <input type="text" class="form-control" asp-for="Password" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row" style="margin-top:25px">
+                    <div class="col-md-3">
+                        Address
+                        <select class="form-control" id="subjectId" asp-for="UserAddressId" asp-items="@(new SelectList(ViewBag.address,"UserAddressId","UserAddressName"))">
+                            <option value="" selected="selected">Please Select</option>
+                        </select>
+                        <span asp-validation-for="UserAddressId" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+                        User Type
+                        <select class="form-control" id="subjectId" asp-for="UserTypeId">
+                            <option value="2" selected="selected">Teacher</option>
+                        </select>
+                        <span asp-validation-for="UserAddressId" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3" style="margin-top:33px">
+                        Gender
+                        @Html.RadioButtonFor(m => m.Gender, true)Male
+                        @Html.RadioButtonFor(m => m.Gender, false)Female
+                        <span asp-validation-for="Gender" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3" style="display:none">
+                        @Html.RadioButtonFor(m => m.UserTypeId, true)
+                    </div>
+                </div>
+                <div class="row" style="margin-top:25px">
+                    <div class="col-md-3">
+                        <input type="submit" value="Save Teacher" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+
+    </form>
+</body>
+@section Scripts
+{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+</html>
